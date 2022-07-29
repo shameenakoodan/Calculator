@@ -28,32 +28,10 @@ const calculateOperations = ()=>{
    console.log(`Expression  : ${expression}`)
    const tokens = expression.split('');
 
-    const values = [];
-    const operators = [];
-    let prev="";
-    let number="";
-    let result=0;
-    tokens.forEach(element =>{
-        //Check for digits
-        if(element>="0" && element <="9"){
-            //Find mutliple digit numbers
-            if(prev>="0" && prev<="9"){
-                number+=element;
-                prev = number;
-            }   
-            else{
-                number=element;
-                prev  = element;
-            }
-        }
-        else{
-                values.push(number);
-                operators.push(element);
-                prev="";
-        }
-    });
+   //Use regular expression to extract digits and operators
+   const values  = expression.match(/\d+/g);
+   const operators =expression.match(/\D/g,'');
 
-    values.push(number);
     console.log("Before Operation");
     console.log(operators);
     console.log(values);

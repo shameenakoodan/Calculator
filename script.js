@@ -18,17 +18,11 @@ const cancelButton = document.querySelector(".cancel-button");
 //Display contents when entering numbers or any symbol is clicked
 const  displayFunction=(event)=>{
     const number = event.target.value;
-    inputBox.value+=number;
+    inputBox.value +=number;
 }
 //Function that performs arithmetic operations
 
-const calculateOperations = ()=>{
-    //alert(inputBox.value);
-    const expression = inputBox.value;
-    alert(expression);
-    const result = Function("return " + expression)();
-    inputBox.value = result;
-}
+
 //Add event listener for all the numbers in the calculator
 numberButtons.forEach(element => {
     element.addEventListener("click",displayFunction);

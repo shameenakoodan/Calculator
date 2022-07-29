@@ -52,24 +52,32 @@ const calculateOperations = ()=>{
         //Check for operators
         if(element == "+" || element == "-" || element == "*"|| element =="/"){
             //Check whether stack already has an operator and two values
-            if(operators.length == 1 && values.length == 2){
-                result +=Number(values.pop()) + Number(values.pop());
+            if(operators.length == 1 && values.length == 1){
+                const operator = operators.pop();
+                switch(operator){
+                    case "+":
+                        result = Number(values.pop()) + Number(number);
+                        break;
+                    default:
+                        break;
+                }
+                
                 values.push(result);
                 number="";
+                
                 operators.push(element);
 
             }else{
                 values.push(number);
                 number="";
                 operators.push(element);
-                
-            }
-            
+                prev="";
+            }            
         }
     });
     if(number>="0")
-        values.push(number);
-    result += Number(values.pop()) + Number(values.pop());
+    values.push(number);
+    result = Number(values.pop()) + Number(values.pop());
     inputBox.value = result;
 }
 //Add event listener for all the numbers in the calculator

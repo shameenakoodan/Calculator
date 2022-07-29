@@ -1,0 +1,23 @@
+@use 'vars';
+body{
+    background-color: vars.$background-grey-color;    
+}
+h1{
+    text-align: center;
+    color: #B1BAB5;
+}
+input{
+    background-color:  #474B4C;
+    border:none;
+    width:100%;
+    height: 100%;
+    color: #A6AFAE;
+    font-size: 10vh;
+    text-align: end;
+    outline: none;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -22,7 +22,56 @@ const  displayFunction=(event)=>{
 }
 //Function that performs arithmetic operations
 
+const calculateOperations = ()=>{
+    //alert(inputBox.value);
+   const expression = inputBox.value;
+   /* alert(expression);
+    const result = Function("return " + expression)();
+    inputBox.value = result; */
 
+    const tokens = expression.split('');
+
+    const values = [];
+    const operators = [];
+    let prev="";
+    let number="";
+    let result=0;
+    tokens.forEach(element =>{
+        //Check for digits
+        if(element>="0" && element <="9"){
+            //Find mutliple digit numbers
+            if(prev>="0" && prev<="9"){
+                number+=element;
+                prev = number;
+            }   
+            else{
+                number=element;
+                prev  = element;
+            }
+        }
+        //Check for operators
+        if(element == "+" || element == "-" || element == "*"|| element =="/"){
+            //Check whether stack already has an operator and two values
+            if(operators.length == 1 && values.length == 2){
+                result +=Number(values.pop()) + Number(values.pop());
+                values.push(result);
+                number="";
+                operators.push(element);
+
+            }else{
+                values.push(number);
+                number="";
+                operators.push(element);
+                
+            }
+            
+        }
+    });
+    if(number>="0")
+        values.push(number);
+    result += Number(values.pop()) + Number(values.pop());
+    inputBox.value = result;
+}
 //Add event listener for all the numbers in the calculator
 numberButtons.forEach(element => {
     element.addEventListener("click",displayFunction);

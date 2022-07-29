@@ -25,11 +25,8 @@ const  displayFunction=(event)=>{
 const calculateOperations = ()=>{
     //alert(inputBox.value);
    const expression = inputBox.value;
-   /* alert(expression);
-    const result = Function("return " + expression)();
-    inputBox.value = result; */
-
-    const tokens = expression.split('');
+   console.log(`Expression  : ${expression}`)
+   const tokens = expression.split('');
 
     const values = [];
     const operators = [];
@@ -49,35 +46,47 @@ const calculateOperations = ()=>{
                 prev  = element;
             }
         }
-        //Check for operators
-        if(element == "+" || element == "-" || element == "*"|| element =="/"){
-            //Check whether stack already has an operator and two values
-            if(operators.length == 1 && values.length == 1){
-                const operator = operators.pop();
-                switch(operator){
-                    case "+":
-                        result = Number(values.pop()) + Number(number);
-                        break;
-                    default:
-                        break;
-                }
-                
-                values.push(result);
-                number="";
-                
-                operators.push(element);
-
-            }else{
+        else{
                 values.push(number);
-                number="";
                 operators.push(element);
                 prev="";
-            }            
         }
     });
-    if(number>="0")
+
     values.push(number);
-    result = Number(values.pop()) + Number(values.pop());
+    console.log("Before Operation");
+    console.log(operators);
+    console.log(values);
+    
+    //Pop from both the stack and do the operations
+    while(values.length>0 && operators.length>0){
+        const operator = operators.pop();
+        console.log(`Popped ${operator}`);
+        const number1 = values.pop();
+        const number2 = values.pop();
+        switch(operator){
+            case "+":
+                result = Number(number2) + Number(number1);
+                console.log(`${Number(number1)} + ${Number(number2)} : ${result}`);
+                values.push(result);
+                break;
+            case "-":
+                result = Number(number2) - Number(number1);
+                values.push(result);
+                console.log(`${Number(number1)}- ${Number(number2)} : ${result}`);
+                break;
+            case "*":
+                result = Number(number2) * Number(number1);
+                values.push(result);
+                console.log(`${Number(number1)}* ${Number(number2)} : ${result}`);
+                break;
+            case "/":
+                result = Number(`${Number(number2)}/ ${Number(number1)} : ${result}`);
+                values.push(result);
+                console.log(`Result : ${result}`);
+            break;
+        }
+    }
     inputBox.value = result;
 }
 //Add event listener for all the numbers in the calculator

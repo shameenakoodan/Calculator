@@ -87,7 +87,10 @@ const calculateOperations = ()=>{
             break;
         }
     }
-    inputBox.value = result;
+    if(isNaN(result))
+        inputBox.value = "Invalid";
+    else
+        inputBox.value = result;
 }
 //Add event listener for all the numbers in the calculator
 numberButtons.forEach(element => {

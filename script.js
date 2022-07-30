@@ -38,7 +38,9 @@ const calculateOperations = ()=>{
 
    //Use regular expression to extract digits and operators
    const values  = expression.match(/(\d+|\d+)(,\d+)*(\.\d+)*/g);
-   const operators =expression.match(/\D/g,'');
+   const op =expression.match(/\D/g,'');
+    //Removed all dots from operators which can be done using regx but using filter
+    operators = op.filter(op=>(op!="."))
 
     console.log("Before Operation");
     console.log(operators);

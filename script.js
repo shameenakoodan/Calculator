@@ -26,8 +26,13 @@ const  displayFunction=(event)=>{
 
 //Function that performs arithmetic operations
 const calculateOperations = ()=>{
-    //alert(inputBox.value);
+
    const expression = inputBox.value;
+   if(expression.length==0){
+    inputBox.value = "0";
+    return;
+   }
+   
    console.log(`Expression  : ${expression}`)
    const tokens = expression.split('');
 

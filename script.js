@@ -32,12 +32,12 @@ const calculateOperations = ()=>{
     inputBox.value = "0";
     return;
    }
-   
+
    console.log(`Expression  : ${expression}`)
    const tokens = expression.split('');
 
    //Use regular expression to extract digits and operators
-   const values  = expression.match(/\d+/g);
+   const values  = expression.match(/(\d+|\d+)(,\d+)*(\.\d+)*/g);
    const operators =expression.match(/\D/g,'');
 
     console.log("Before Operation");
@@ -73,7 +73,9 @@ const calculateOperations = ()=>{
             case "√":
                     result = Math.sqrt(Number(number1));
                     break;
-            break;
+            case "%":
+                result = Number(number1)/100;
+                break;        
         }
     }
     if(isNaN(result))

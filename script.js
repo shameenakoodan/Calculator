@@ -15,13 +15,16 @@ const equalButton = document.querySelector(".equal-button");
 //Cancel button 
 const cancelButton = document.querySelector(".cancel-button");
 
+//Other Symbols button
+const otherSymbols = document.querySelectorAll(".symbols-button");
+
 //Display contents when entering numbers or any symbol is clicked
 const  displayFunction=(event)=>{
     const number = event.target.value;
     inputBox.value +=number;
 }
-//Function that performs arithmetic operations
 
+//Function that performs arithmetic operations
 const calculateOperations = ()=>{
     //alert(inputBox.value);
    const expression = inputBox.value;
@@ -62,6 +65,9 @@ const calculateOperations = ()=>{
                 result = Number(`${Number(number2)}/ ${Number(number1)} : ${result}`);
                 values.push(result);
                 console.log(`Result : ${result}`);
+            case "√":
+                    result = Math.sqrt(Number(number1));
+                    break;
             break;
         }
     }
@@ -84,11 +90,13 @@ arithmeticButtons.forEach(element => {
 equalButton.addEventListener("click",calculateOperations);
 
 //Add eventlistner for the cancel button
-
 cancelButton.addEventListener("click",()=>{
     inputBox.value="";
 })
 
-
+//Add eventlistener for the squareroot button
+otherSymbols.forEach(element => {
+    element.addEventListener("click",displayFunction);
+});
 
 

@@ -9,19 +9,24 @@ const arithmeticButtons = document.querySelectorAll(".arithmetic-button");
 
 
 //Equal Button 
-
-const equalButton = document.querySelector(".equal-button");
-
-//Cancel button 
-const cancelButton = document.querySelector(".cancel-button");
+const equalButton = document.querySelector(".equals-button");
 
 //Other Symbols button
 const otherSymbols = document.querySelectorAll(".symbols-button");
+
+//Cancel Button
+const cancelButton = document.querySelector(".cancel-button");
 
 //Display contents when entering numbers or any symbol is clicked
 const  displayFunction=(event)=>{
     const number = event.target.value;
     inputBox.value +=number;
+}
+
+//Cancel Function or clear the screen
+const cancelFunction=()=>{
+    const textValue = inputBox.value;
+    inputBox.value = textValue.slice(0,-1);
 }
 
 //Function that performs arithmetic operations
@@ -33,45 +38,36 @@ const calculateOperations = ()=>{
     return;
    }
 
-   console.log(`Expression  : ${expression}`)
    const tokens = expression.split('');
 
    //Use regular expression to extract digits and operators
    const values  = expression.match(/(\d+|\d+)(,\d+)*(\.\d+)*/g);
    const op =expression.match(/\D/g,'');
     //Removed all dots from operators which can be done using regx but using filter
-    operators = op.filter(op=>(op!="."))
-
-    console.log("Before Operation");
-    console.log(operators);
-    console.log(values);
+    operators = op.filter(opr=>(opr!="."))
+    
     
     //Pop from both the stack and do the operations
     while(values.length>0 && operators.length>0){
         const operator = operators.pop();
-        console.log(`Popped ${operator}`);
         const number1 = values.pop();
         const number2 = values.pop();
         switch(operator){
             case "+":
                 result = Number(number2) + Number(number1);
-                console.log(`${Number(number1)} + ${Number(number2)} : ${result}`);
                 values.push(result);
                 break;
             case "-":
                 result = Number(number2) - Number(number1);
                 values.push(result);
-                console.log(`${Number(number1)}- ${Number(number2)} : ${result}`);
                 break;
             case "*":
                 result = Number(number2) * Number(number1);
                 values.push(result);
-                console.log(`${Number(number1)}* ${Number(number2)} : ${result}`);
                 break;
             case "/":
                 result = Number(`${Number(number2)}/ ${Number(number1)} : ${result}`);
                 values.push(result);
-                console.log(`Result : ${result}`);
             case "√":
                     result = Math.sqrt(Number(number1));
                     break;
@@ -98,14 +94,12 @@ arithmeticButtons.forEach(element => {
 //Add eventlistener for the equal button
 equalButton.addEventListener("click",calculateOperations);
 
-//Add eventlistner for the cancel button
-cancelButton.addEventListener("click",()=>{
-    inputBox.value="";
-})
+
 
 //Add eventlistener for the squareroot button
 otherSymbols.forEach(element => {
     element.addEventListener("click",displayFunction);
 });
 
-
+//Add eventlistenr for cancel button 
+cancelButton.addEventListener("click",cancelFunction);

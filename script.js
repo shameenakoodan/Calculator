@@ -43,6 +43,18 @@ const calculateOperations = ()=>{
    //Use regular expression to extract digits and operators
    const values  = expression.match(/(\d+|\d+)(,\d+)*(\.\d+)*/g);
    const op =expression.match(/\D/g,'');
+
+   //if values is null Invalid expression
+   if(values == null){
+    inputBox.value ="Invalid";
+    return;
+   }
+
+   //If no operators are present display only numbers
+   if(op == null){
+    inputBox.value =inputBox.value;
+    return;
+   }
     //Removed all dots from operators which can be done using regx but using filter
     operators = op.filter(opr=>(opr!="."))
     

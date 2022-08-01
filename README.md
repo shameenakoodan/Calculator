@@ -1,6 +1,6 @@
-# Calculator
+# **Calculator
 
-#A Basic Calculator that perform the following arithmetic operations
+##A Basic Calculator that perform the following arithmetic operations
 1 - Addition
 2 - Subtraction
 3 - Mutliplication

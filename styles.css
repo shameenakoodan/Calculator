@@ -1,7 +1,7 @@
 .flex-container {
   border: 2px #474B4C solid;
   border-radius: 18px;
-  background-color: #474B4C;
+  background-color: cornsilk;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -43,7 +43,7 @@ input {
    text-align: end;
    outline: none;*/
   width: 96%;
-  font-size: 5rem;
+  font-size: 3rem;
   height: 80px;
   border: none;
   background-color: #252525;

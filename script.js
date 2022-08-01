@@ -59,8 +59,7 @@ const arithmeticOperation=(operator,number1,number2)=>{
             return result;
             break;
         case "-":
-            result = Number(number1) - Number(number2);
-            
+            result = Number(number1) - Number(number2);  
             console.log(`${Number(number1)}- ${Number(number2)} : ${result}`);
             return result;
             break;
@@ -102,7 +101,7 @@ const calculateOperations = ()=>{
 
    //if values is null Invalid expression
    if(values == null){
-    inputBox.value ="Invalid";
+    inputBox.value ="Error";
     return;
    }
 
@@ -118,7 +117,12 @@ const calculateOperations = ()=>{
         if(operators.length == 1 && values.length==2){
             result = arithmeticOperation(operators.shift(),values.shift(),values.shift());
             inputBox.value = result;
-           // return;
+        }
+        if(operators.length ==1 && values.length == 1 && operators.pop() == "√")
+        {
+            result = Math.sqrt(values.pop(0));
+            inputBox.value = result;
+          //  return result;
         }
         const number1 = values.shift();
         const number2 = values.shift();
@@ -141,7 +145,7 @@ const calculateOperations = ()=>{
         } 
     }
     if(isNaN(result))
-        inputBox.value = "Invalid";
+        inputBox.value = "Error";
     else
         inputBox.value = result;
 }

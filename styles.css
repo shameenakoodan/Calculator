@@ -30,18 +30,10 @@ h1 {
 }
 
 header {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 input {
-  /* background-color:  #151616;
-   border:none;
-   width:100%;
-   height: 100%;
-   color: #A6AFAE;
-   font-size: 10vh;
-   text-align: end;
-   outline: none;*/
   width: 96%;
   font-size: 3rem;
   height: 80px;

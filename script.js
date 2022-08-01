@@ -39,10 +39,56 @@ const backspaceeFunction=()=>{
     inputBox.value = textValue.slice(0,-1);
 }
 
+//Function to check for precedence
+const  hasPrecedence=(op1,op2)=>{
+    if(op1 == op2)
+        return false;
+    if ((op1 == '*' || op1 == '/') &&
+        (op2 == '+' || op2 == '-'))
+            return false;
+        else
+            return true;
+};
+
+////Function for arithmetic operations
+
+const arithmeticOperation=(operator,number1,number2)=>{
+    switch(operator){
+        case "+":
+            result = Number(number2) + Number(number1);
+            return result;
+            break;
+        case "-":
+            result = Number(number1) - Number(number2);
+            
+            console.log(`${Number(number1)}- ${Number(number2)} : ${result}`);
+            return result;
+            break;
+        case "*":
+            result = Number(number2) * Number(number1);
+            console.log(`${Number(number1)}* ${Number(number2)} : ${result}`);
+            return result;
+            break;
+        case "/":
+            result = Number(number1)/ Number(number2);
+            console.log(`Result : ${result}`);
+            return result;
+        case "√":
+            result = Math.sqrt(Number(number1));
+            return result;
+            break;
+        case "%":
+            result = Number(number1)/100;
+            return result;
+            break;
+        }      
+}
+
 //Function that performs arithmetic operations
 const calculateOperations = ()=>{
 
    const expression = inputBox.value;
+   let result=0;
    if(expression.length==0){
     inputBox.value = "0";
     return;
@@ -68,35 +114,31 @@ const calculateOperations = ()=>{
     //Removed all dots from operators which can be done using regx but using filter
     operators = op.filter(opr=>(opr!="."))
     
-    
-    //Pop from both the stack and do the operations
     while(values.length>0 && operators.length>0){
-        const operator = operators.pop();
-        const number1 = values.pop();
-        const number2 = values.pop();
-        switch(operator){
-            case "+":
-                result = Number(number2) + Number(number1);
-                values.push(result);
-                break;
-            case "-":
-                result = Number(number2) - Number(number1);
-                values.push(result);
-                break;
-            case "*":
-                result = Number(number2) * Number(number1);
-                values.push(result);
-                break;
-            case "/":
-                result = Number(`${Number(number2)}/ ${Number(number1)} : ${result}`);
-                values.push(result);
-            case "√":
-                    result = Math.sqrt(Number(number1));
-                    break;
-            case "%":
-                result = Number(number1)/100;
-                break;        
+        if(operators.length == 1 && values.length==2){
+            result = arithmeticOperation(operators.shift(),values.shift(),values.shift());
+            inputBox.value = result;
+           // return;
         }
+        const number1 = values.shift();
+        const number2 = values.shift();
+        const operator1 = operators.shift();
+        let operator2;
+        if(operators.length>0){
+             operator2= operators.shift();
+            //If operator2 has higher precendece
+            if(hasPrecedence(operator1,operator2)){
+
+                result = arithmeticOperation(operator2,number2,values.shift());
+                values.unshift(number1);
+                values.unshift(result);
+                operators.unshift(operator1);
+            }else{
+                result = arithmeticOperation(operator1,number1,number2);
+                operators.unshift(operator2);
+                values.unshift(result);
+            }
+        } 
     }
     if(isNaN(result))
         inputBox.value = "Invalid";

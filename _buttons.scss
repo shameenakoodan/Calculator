@@ -1,18 +1,22 @@
 @use 'vars';
 .calculate-buttons{
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1px;
 }
 button{
     border-radius: 30px;
     width: 10vh;
     height: 10vh;
-    font-size: 6vh;
+    font-size: 2rem;
     border: none;
     margin: 1vh;
 }
 .cancel-button{
     color: #FEFDFB;
     background-color:#FDB82D;
+    width: 10vh;
 }
 .symbols-button{
     background-color: #4B443A;
@@ -26,7 +30,11 @@ button{
     background-color: #393A3E;
     color: #9D9D9D;
 }
-.equal-button{
+.equals-button{
     background-color: #992BF0;
     color: #FFFFFF;
+}
+#backspace-button{
+        background-color: #393A3E;
+        color: #9D9D9D;
 }

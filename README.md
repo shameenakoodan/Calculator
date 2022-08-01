@@ -1,4 +1,4 @@
-# **Calculator
+#Calculator
 
 A Basic Calculator that perform the following arithmetic operations<br>
 1 - Addition<br>

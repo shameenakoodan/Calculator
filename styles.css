@@ -26,7 +26,7 @@ main {
 
 h1 {
   text-align: center;
-  color: #B1BAB5;
+  color: cornsilk;
 }
 
 header {
@@ -47,12 +47,13 @@ input {
   caret-color: transparent;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+/*
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
-
+*/
 .calculate-buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

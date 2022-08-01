@@ -17,14 +17,24 @@ const otherSymbols = document.querySelectorAll(".symbols-button");
 //Cancel Button
 const cancelButton = document.querySelector(".cancel-button");
 
+//BackSpace Button
+const backspaceButton = document.querySelector("#backspace-button");
+
 //Display contents when entering numbers or any symbol is clicked
 const  displayFunction=(event)=>{
     const number = event.target.value;
     inputBox.value +=number;
 }
 
+
 //Cancel Function or clear the screen
 const cancelFunction=()=>{
+    const textValue = inputBox.value;
+    inputBox.value = "";
+}
+
+//BackSpacefunction
+const backspaceeFunction=()=>{
     const textValue = inputBox.value;
     inputBox.value = textValue.slice(0,-1);
 }
@@ -115,3 +125,7 @@ otherSymbols.forEach(element => {
 
 //Add eventlistenr for cancel button 
 cancelButton.addEventListener("click",cancelFunction);
+
+//BackSpace Button
+backspaceButton.addEventListener("click",backspaceeFunction);
+

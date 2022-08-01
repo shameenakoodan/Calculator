@@ -76,6 +76,10 @@ button {
   margin: 1vh;
 }
 
+button:hover {
+  opacity: 0.5;
+}
+
 .cancel-button {
   color: #FEFDFB;
   background-color: #FDB82D;

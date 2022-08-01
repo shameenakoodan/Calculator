@@ -1,3 +1,4 @@
+//Function to check for precedence
 const  hasPrecedence=(op1,op2)=>{
     if ((op1 == '*' || op1 == '/') &&
         (op2 == '+' || op2 == '-'))
@@ -6,6 +7,7 @@ const  hasPrecedence=(op1,op2)=>{
             return true;
 };
 
+//Function for arithmetic operations
 const arithmeticOperation=(operator,number1,number2)=>{
     switch(operator){
         case "+":
@@ -38,11 +40,10 @@ const arithmeticOperation=(operator,number1,number2)=>{
             break;
         }      
 }
-const expression = "6*3+2";
 
+//
+const expression = "6+3*2+2*3";
 
-    let prev="";
-    let number="";
     let result=0;
 
     //Used regular expression to get the operators and numbers in two seperate arrays
@@ -56,18 +57,17 @@ const expression = "6*3+2";
     //Pop from both the stack and do the operations
     
     while(values.length>0 && operators.length>0){
+        if(operators.length == 1 && values.length==2){
+            result = arithmeticOperation(operators.shift(),values.shift(),values.shift());
+            return;
+        }
         const number1 = values.shift();
         const number2 = values.shift();
         const operator1 = operators.shift();
-         //Check for operator precendence
-        
-        /* ------------------------------ */
         let operator2;
-        if(operators.length == 1){
-            result = arithmeticOperation(operator1,number1,number2);
-        }
-        else if(operators.length>0){
+        if(operators.length>0){
              operator2= operators.shift();
+             console.log(`Operators : ${operator1} and ${operator2}`);
             //If operator2 has higher precendece
             if(hasPrecedence(operator1,operator2)){
                 console.log("true");
@@ -75,7 +75,7 @@ const expression = "6*3+2";
                 result = arithmeticOperation(operator2,number2,values.shift());
                 values.push(number1);
                 values.push(result);
-                operators.push(operator1);
+                operators.unshift(operator1);
                 console.log(`after initial ${operators} and ${values}`);
             }else{
                 console.log(`false`);
@@ -84,7 +84,7 @@ const expression = "6*3+2";
                 values.push(number2);
                 values.push(result);
             }
-        }        
+        } 
     }
     console.log(`${operators} and ${values}`);
     if(isNaN(result))
